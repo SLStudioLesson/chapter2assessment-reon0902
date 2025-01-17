@@ -82,10 +82,10 @@ public class RecipeUI {
                 if(k<list2.length-1){
                     System.out.print(",");
                 }
-            // 表示を調整するための改行
+                // 表示を調整するための改行
+            }
             System.out.println();
         }
-    }
         // Recipes:
         // -----------------------------------
         // Recipe Name: Tomato Soup
