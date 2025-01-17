@@ -62,6 +62,30 @@ public class RecipeUI {
      * RecipeFileHandlerから読み込んだレシピデータを整形してコンソールに表示します。
      */
     private void displayRecipes() {
+        ArrayList<String> list = new ArrayList<>();
+        list = fileHandler.readRecipes();
+        System.out.println("recipes:");
+        for (int i = 0; i <= list.size(); i++) {
+            String[] list2 = list.get(i).split(",");
+            System.out.println("-----------------------------------");
+            System.out.println(" Recipe Name:" + list2[0]);
+            System.out.println("Main Ingredients:");
+            for (int k = 0; k <= list2.length - 1; k++) {
+                System.out.println(list2[k]);
+            }
+
+        }
+        // Recipes:
+        // -----------------------------------
+        // Recipe Name: Tomato Soup
+        // Main Ingredients: Tomatoes, Onion, Garlic, Vegetable Stock
+        // -----------------------------------
+        // Recipe Name: Chicken Curry
+        // Main Ingredients: Chicken, Curry Powder, Onion, Garlic, Ginger
+        // -----------------------------------
+        // Recipe Name: Beef Stew
+        // Main Ingredients: Beef, Potatoes, Carrots, Onion, Beef Stock
+        // -----------------------------------
 
     }
 
@@ -86,4 +110,3 @@ public class RecipeUI {
     }
 
 }
-
