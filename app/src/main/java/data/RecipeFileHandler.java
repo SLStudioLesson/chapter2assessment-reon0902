@@ -1,8 +1,9 @@
 package data;
 
-import java.io.File;
+import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -25,23 +26,24 @@ public class RecipeFileHandler {
      * @return レシピデータ
      */
     public ArrayList<String> readRecipes() {
-        ArrayList<String> recipes = new ArrayList<>();
+        ArrayList<String> recipes = new ArrayList<>();//Stringに変換
         // try {
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                recipes.add(line);
-                // } catch (IOException e) {
-                // System.out.println("Error reading file:" + e.getMessage());
-                // }
-            }
-        } catch (IOException e) {
+            // recipes.txtからレシピデータを読み込み
+            try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+                String line;
+                //、それをリスト形式でループさせて返します。
+                while ((line = reader.readLine()) != null) {
+                    recipes.add(line);
+                    // } catch (IOException e) {
+                        // System.out.println("Error reading file:" + e.getMessage());
+                        // }
+                    }
+                    // IOExceptionが発生したときはError reading file: 例外のメッセージとコンソールに表示します。
+                } catch (IOException e) {
             System.out.println("\"Error reading file:\" + e.getMessage()");
-
         }
-        return null;
+        return recipes;
     }
-
     /**
      * 設問2: 新規登録機能
      * 新しいレシピをrecipes.txtに追加します。<br>
@@ -51,11 +53,22 @@ public class RecipeFileHandler {
      * @param ingredients 材料名
      */
     public void addRecipe(String recipeName, String ingredients) {
-
-        // try {
-
-        // } catch (IOException e) {
-
-        // }
+        // try
+        
+        // 新しいレシピをrecipes.txtに追加する。
+        try(BufferedWriter writer=new BufferedWriter(new FileWriter(filePath,true))){
+            // レシピ名と材料はカンマ区切りで1行としてファイルに書き込まれる。
+            writer.write(recipeName+","+ingredients);
+            writer.newLine();
+            // 入力の成功を表示する
+            System.out.println("Recipe added successfuly");
+            // IOExceptionが発生したときはError reading file: 例外のメッセージとコンソールに表示する。
+    }catch(IOException e){
+        System.out.println("Error reading file: 例外のメッセージ"+e.getMessage());
     }
+
+    }
+
 }
+
+
