@@ -40,7 +40,7 @@ public class RecipeFileHandler {
                     }
                     // IOExceptionが発生したときはError reading file: 例外のメッセージとコンソールに表示します。
                 } catch (IOException e) {
-            System.out.println("\"Error reading file:\" + e.getMessage()");
+            System.out.println("Error reading file" + e.getMessage());
         }
         return recipes;
     }

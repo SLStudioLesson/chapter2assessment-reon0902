@@ -67,8 +67,14 @@ public class RecipeUI {
         ArrayList<String> list = new ArrayList<>();//リストをStringに変換
         list = fileHandler.readRecipes();
         System.out.println("recipes:");//料理の表示
-        // 各表示をリスト分ループさせる処理
-        for (int i = 0; i <= list.size(); i++) {
+        //空のリストの時の分岐
+        if (list.isEmpty()) {
+            System.out.println("No recipes available.");
+        } else {
+            System.out.println("Recipes:");
+            
+            // 各表示をリスト分ループさせる処理
+        for (int i = 0; i <list.size(); i++) {
             String[] list2 = list.get(i).split(",");
             //区切りの表示
             System.out.println("-----------------------------------");
@@ -76,7 +82,7 @@ public class RecipeUI {
             System.out.println(" Recipe Name: " + list2[0]);
             //材料名の処理
             System.out.print("Main Ingredients: ");
-            for (int k = 0; k <= list2.length - 1; k++) {
+            for (int k = 0; k <list2.length - 1; k++) {
                 System.out.print(list2[k]);
                 //料理名に区切りをつける
                 if(k<list2.length-1){
@@ -86,6 +92,7 @@ public class RecipeUI {
             }
             System.out.println();
         }
+    }
         // Recipes:
         // -----------------------------------
         // Recipe Name: Tomato Soup
